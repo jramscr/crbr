@@ -1,0 +1,52 @@
+<ion-view title="Comercios" id="page13">
+  <ion-content padding="true" class="has-header">
+    <div id="comercios-container8" class="row">
+      <div id="comercios-container6" class="col-50">
+        <div class="item item-body" id="comercios-list-item-container7">
+          <form id="comercios-form5" class="list">
+            <label class="item item-input" id="comercios-input10">
+              <span class="input-label">Filtrar</span>
+              <input type="text" placeholder="Nombre, Categoría, Dirección">
+            </label>
+          </form>
+          <ion-list id="comercios-list6">
+            <ion-item class="item-thumbnail-left item-icon-right" id="comercios-list-item19" ui-sref="tabsController.comercio">
+              <h2>Soda Castro</h2>
+              <i class="icon ion-edit"></i>
+            </ion-item>
+            <ion-item class="item-thumbnail-left item-icon-right" id="comercios-list-item20" ui-sref="tabsController.comercio">
+              <h2>Taco Bell Curridabat</h2>
+              <i class="icon ion-edit"></i>
+            </ion-item>
+            <ion-item class="item-thumbnail-left item-icon-right" id="comercios-list-item21" ui-sref="tabsController.comercio">
+              <h2>Matsuri</h2>
+              <i class="icon ion-edit"></i>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+      <div id="comercios-container7" class="col-50">
+        <form id="comercios-form6" class="list">
+          <label class="item item-input" id="comercios-input13">
+            <span class="input-label">Nombre</span>
+            <input type="text" placeholder="Taco Bell">
+          </label>
+          <label class="item item-input" id="comercios-input15">
+            <span class="input-label">Correo</span>
+            <input type="email" placeholder="example@example.com">
+          </label>
+          <label class="item item-input" id="comercios-input16">
+            <span class="input-label">Teléfono</span>
+            <input type="tel" placeholder="">
+          </label>
+          <label class="item item-input" id="comercios-textarea2">
+            <span class="input-label">Dirección</span><textarea placeholder="Dirección completa del cliente"></textarea></label>
+          <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
+            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+          </div>
+        </form>
+        <a ui-sref="tabsController.comercio" id="comercios-button2" class="button button-positive  button-block">Registrar Comercio</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
