@@ -6,11 +6,10 @@
     .controller('UsersCtrl', UsersCtrl);
 
   /* @ngInject */
-  function UsersCtrl(currentUserService) {
+  function UsersCtrl($scope, $ionicModal, lodash) {
 
     var vm = this;
     vm.user = {};
-    vm.currentUser = currentUserService.getCurrentUser();
     vm.users = [
       {
         name: 'Miguel Arias',
@@ -37,6 +36,10 @@
 
     // Methods.
     vm.saveUser = saveUser;
+    vm.showDetails = showDetails;
+    vm.closeModal = closeModal;
+    vm.deleteUser = deleteUser;
+    vm.editUser = editUser;
 
     activate();
 
@@ -51,7 +54,18 @@
         phone: vm.user.phone,
         address: vm.user.address
       }
-      vm.users.push(user);
+
+      var foundedUsers = lodash.groupBy(vm.users, function(userInArray){
+        return userInArray.identifier;
+      });
+
+      if (foundedUsers[user.identifier]) {
+        var index = vm.users.indexOf(foundedUsers[user.identifier]);
+        vm.users[index] = user;
+      } else {
+        vm.users.push(user);
+      }
+
       cleanForm();
     }
 
@@ -63,6 +77,32 @@
         phone: '',
         address: ''
       }
+    }
+
+    function closeModal() {
+      vm.modal.remove();
+    }
+
+    function showDetails(user) {
+      $scope.user = user;
+      $ionicModal.fromTemplateUrl('/app/users/user.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal){
+        vm.modal = modal;
+        vm.modal.show();
+      });
+    }
+
+    function deleteUser(user) {
+      var index = vm.users.indexOf(user);
+
+      vm.modal.remove();
+      vm.users.splice(index, 1);
+    }
+
+    function editUser(user) {
+      vm.user = user;
     }
 
   }

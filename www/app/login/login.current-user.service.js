@@ -11,7 +11,8 @@
 
     var service = {
       setCurrentUser: setCurrentUser,
-      getCurrentUser: getCurrentUser
+      getCurrentUser: getCurrentUser,
+      deleteCurrentUser: deleteCurrentUser
     };
 
     return service;
@@ -22,6 +23,10 @@
 
     function getCurrentUser() {
       return vm.user;
+    }
+
+    function deleteCurrentUser() {
+      return vm.user = {};
     }
   }
 

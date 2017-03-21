@@ -9,21 +9,19 @@
   function HomeCtrl(currentUserService) {
 
     var vm = this;
-    vm.currentUser = currentUserService.getCurrentUser();
-    vm.isCurrentUserAdmin = isCurrentUserAdmin;
+    vm.destroyCurrentUser = destroyCurrentUser;
 
     activate();
 
     function activate() {
+      vm.currentUser = currentUserService.getCurrentUser();
     }
 
-    function isCurrentUserAdmin() {
-      if(vm.currentUser) {
-        return vm.currentUser.isAdmin;
-      } else {
-        return false;
-      }
+    function destroyCurrentUser() {
+      currentUserService.deleteCurrentUser();
+      vm.currentUser = {};
     }
 
   }
 })();
+

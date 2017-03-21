@@ -8,9 +8,7 @@
 
     <ion-content ng-controller="HomeCtrl" padding="false" class="side-menu-left has-header ">
       <ion-list>
-        <ion-item class="item-icon-left" ui-sref="home.clients" menu-close="">
-          <i class="icon ion-android-home"></i>Inicio</ion-item>
-        <ion-item class="item-icon-left" ui-sref="login" menu-close="">
+        <ion-item class="item-icon-left" ui-sref="login" menu-close="" ng-click="vm.destroyCurrentUser()">
           <i class="icon ion-android-exit"></i>Salir</ion-item>
       </ion-list>
     </ion-content>
@@ -31,26 +29,26 @@
 
     <!-- Tabs Menu in content -->
     <ion-tabs class="tabs-stable tabs-icon-top">
-      <ion-tab title="Clientes" icon="ion-person-stalker" ui-href="home.clients" href="#/home/clients" ng-show="vm.isCurrentUserAdmin()">
+      <ion-tab title="Clientes" icon="ion-person-stalker" ui-href="home.clients" href="#/home/clients" ng-if="vm.currentUser.isAdmin">
         <ion-nav-view name="tab_clients"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="Comercios" icon="ion-social-buffer" ui-href="home.restaurants" href="#/home/restaurants" ng-show="vm.isCurrentUserAdmin()">
+      <ion-tab title="Comercios" icon="ion-social-buffer" ui-href="home.restaurants" href="#/home/restaurants" ng-if="vm.currentUser.isAdmin">
         <ion-nav-view name="tab_restaurants"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Usuarios" icon="ion-ios-people" ui-href="home.users" href="#/home/users" ng-hide="vm.currentUser.isAdmin">
+      <ion-tab title="Usuarios" icon="ion-ios-people" ui-href="home.users" href="#/home/users" ng-if="!vm.currentUser.isAdmin">
         <ion-nav-view name="tab_users"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="Ventas" icon="ion-cash" ui-href="home.sales" href="#/home/sales" ng-hide="vm.currentUser.isAdmin">
+      <ion-tab title="Ventas" icon="ion-cash" ui-href="home.sales" href="#/home/sales" ng-if="!vm.currentUser.isAdmin">
         <ion-nav-view name="tab_sales"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="Bonificaciones" icon="ion-ribbon-b" ui-href="home.bonifications" href="#/home/bonifications" ng-hide="vm.currentUser.isAdmin">
+      <ion-tab title="Bonificaciones" icon="ion-ribbon-b" ui-href="home.bonifications" href="#/home/bonifications" ng-if="!vm.currentUser.isAdmin">
         <ion-nav-view name="tab_bonifications"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="Productos" icon="ion-grid" ui-href="home.products" href="#/home/products" ng-hide="vm.currentUser.isAdmin">
+      <ion-tab title="Productos" icon="ion-grid" ui-href="home.products" href="#/home/products" ng-if="!vm.currentUser.isAdmin">
         <ion-nav-view name="tab_products"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="Membresías" icon="ion-card" ui-href="home.memberships" href="#/home/memberships" ng-hide="vm.currentUser.isAdmin">
+      <ion-tab title="Membresías" icon="ion-card" ui-href="home.memberships" href="#/home/memberships" ng-if="!vm.currentUser.isAdmin">
         <ion-nav-view name="tab_memberships"></ion-nav-view>
       </ion-tab>
     </ion-tabs>

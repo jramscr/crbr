@@ -3,6 +3,7 @@
 
   angular
     .module('app', [
+      'ngLodash',
       'app.bonifications',
       'app.clients',
       'app.core',

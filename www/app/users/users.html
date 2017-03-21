@@ -12,11 +12,17 @@
           </form>
 
           <ion-list>
-            <ion-item class="item-icon-right" ng-repeat="user in vm.users | filter:searchText">
-              <h2>{{user.name}}</h2>
-              <p>Cédula: {{user.identifier}}</p>
-              <p>Correo: {{user.email}}</p>
-              <i class="icon ion-edit"></i>
+            <ion-item class="item-button-right" ng-repeat="user in vm.users | filter:searchText">
+              <ion-item-content ng-click="vm.showDetails(user)">
+                <h2>{{user.name}}</h2>
+                <p>Cédula: {{user.identifier}}</p>
+                <p>Correo: {{user.email}}</p>
+              </ion-item-content>
+
+              <button class="button button-positive" ng-click="vm.editUser(user)">
+                <i class="icon ion-edit"></i>
+              </button>
+
             </ion-item>
           </ion-list>
         </div>
@@ -32,7 +38,7 @@
               </label>
               <label class="item item-input">
                 <span class="input-label">Cédula</span>
-                <input type="number" placeholder="103450678" ng-model="vm.user.identifier">
+                <input type="text" placeholder="103450678" ng-model="vm.user.identifier">
               </label>
               <label class="item item-input">
                 <span class="input-label">Correo</span>
@@ -54,4 +60,3 @@
     </div>
   </ion-content>
 </ion-view>
-
