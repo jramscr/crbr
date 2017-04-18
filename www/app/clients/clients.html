@@ -6,37 +6,21 @@
           <form id="clientes-form4" class="list">
             <label class="item item-input" id="clientes-input11">
               <span class="input-label">Filtrar</span>
-              <input type="text" placeholder="Nombre, Categoría, Dirección">
+              <input type="text" placeholder="Nombre, Categoría, Dirección" ng-model="searchText">
             </label>
           </form>
           <ion-list id="clientes-list5">
-            <ion-item class="item-thumbnail-left item-icon-right" id="clientes-list-item12" ui-sref="tabsController.cliente">
-              <h2>Juan Perez</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="clientes-list-item13" ui-sref="tabsController.cliente">
-              <h2>Juana De Arco</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="clientes-list-item14" ui-sref="tabsController.cliente">
-              <h2>Dartagnan Mosquetero</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="clientes-list-item15" ui-sref="tabsController.cliente">
-              <h2>Don Quijote</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="clientes-list-item16" ui-sref="tabsController.cliente">
-              <h2>Miguel Arias</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="clientes-list-item17" ui-sref="tabsController.cliente">
-              <h2>Lucy Quiros</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="clientes-list-item18" ui-sref="tabsController.cliente">
-              <h2>Item</h2>
-              <i class="icon ion-edit"></i>
+            <ion-item class="item-button-right" ng-repeat="client in vm.clients | filter:searchText">
+              <ion-item-content ng-click="vm.showDetails(client)">
+                <h2>{{client.name}}</h2>
+                <p>Cédula: {{client.identifier}}</p>
+                <p>Correo: {{client.email}}</p>
+              </ion-item-content>
+
+              <button class="button button-positive" ng-click="vm.editClient(client)">
+                <i class="icon ion-edit"></i>
+              </button>
+
             </ion-item>
           </ion-list>
         </div>
@@ -45,24 +29,24 @@
         <form id="clientes-form3" class="list">
           <label class="item item-input" id="clientes-input5">
             <span class="input-label">Nombre Completo</span>
-            <input type="text" placeholder="Jose Quirós">
+            <input type="text" placeholder="Jose Quirós" ng-model="vm.client.name">
           </label>
           <label class="item item-input" id="clientes-input7">
             <span class="input-label">Cédula</span>
-            <input type="number" placeholder="103450678">
+            <input type="number" placeholder="103450678" ng-model="vm.client.identifier">
           </label>
           <label class="item item-input" id="clientes-input6">
             <span class="input-label">Correo</span>
-            <input type="email" placeholder="example@example.com">
+            <input type="email" placeholder="example@example.com" ng-model="vm.client.email">
           </label>
           <label class="item item-input" id="clientes-input12">
             <span class="input-label">Teléfono</span>
-            <input type="tel" placeholder="">
+            <input type="tel" placeholder="" ng-model="vm.client.phone">
           </label>
           <label class="item item-input" id="clientes-textarea1">
-            <span class="input-label">Dirección</span><textarea placeholder="Dirección completa del cliente"></textarea></label>
+            <span class="input-label">Dirección</span><textarea placeholder="Dirección completa del cliente" ng-model="vm.client.address"></textarea></label>
         </form>
-        <a ui-sref="tabsController.cliente" id="clientes-button1" class="button button-positive  button-block">Registrar</a>
+        <a id="clientes-button1" class="button button-positive  button-block" ng-click="vm.saveClient()">Registrar</a>
       </div>
     </div>
   </ion-content>

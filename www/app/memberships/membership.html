@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-nav-bar>
+    <ion-nav-buttons side="right" class="has-header">
+      <button class="button button-assertive icon ion-close-circled" ng-click="vm.closeModal()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="has-header padding">
+    <div id="usuario-container13">
+      <h1 id="usuario-heading3" class="text-center">{{membership.name}}</h1>
+    </div>
+    <div id="usuario-markdown5" class="list card">
+      <a class="item item-icon-left">
+        Name: {{membership.name}}
+      </a>
+      <a class="item item-icon-left">
+        Minimal Points: {{membership.minimalPoints}}
+      </a>
+    </div>
+    <button class="button button-assertive button-full" ng-click="vm.deletemembership(membership)">Delete</button>
+  </ion-content>
+</ion-modal-view>

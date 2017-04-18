@@ -9,18 +9,19 @@
               <input type="text" placeholder="Nombre, Categoría, Dirección">
             </label>
           </form>
-          <ion-list id="comercios-list6">
-            <ion-item class="item-thumbnail-left item-icon-right" id="comercios-list-item19" ui-sref="tabsController.comercio">
-              <h2>Soda Castro</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="comercios-list-item20" ui-sref="tabsController.comercio">
-              <h2>Taco Bell Curridabat</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="comercios-list-item21" ui-sref="tabsController.comercio">
-              <h2>Matsuri</h2>
-              <i class="icon ion-edit"></i>
+
+          <ion-list>
+            <ion-item class="item-button-right" ng-repeat="restaurant in vm.restaurants | filter:searchText">
+              <ion-item-content ng-click="vm.showDetails(restaurant)">
+                <h2>{{restaurant.name}}</h2>
+                <p>Phone: {{restaurant.phone}}</p>
+                <p>Email: {{restaurant.email}}</p>
+              </ion-item-content>
+
+              <button class="button button-positive" ng-click="vm.editrestaurant(restaurant)">
+                <i class="icon ion-edit"></i>
+              </button>
+
             </ion-item>
           </ion-list>
         </div>
@@ -29,23 +30,23 @@
         <form id="comercios-form6" class="list">
           <label class="item item-input" id="comercios-input13">
             <span class="input-label">Nombre</span>
-            <input type="text" placeholder="Taco Bell">
+            <input type="text" placeholder="Taco Bell" ng-model="vm.restaurant.name">
           </label>
           <label class="item item-input" id="comercios-input15">
             <span class="input-label">Correo</span>
-            <input type="email" placeholder="example@example.com">
+            <input type="email" placeholder="example@example.com" ng-model="vm.restaurant.email">
           </label>
           <label class="item item-input" id="comercios-input16">
             <span class="input-label">Teléfono</span>
-            <input type="tel" placeholder="">
+            <input type="tel" placeholder="" ng-model="vm.restaurant.phone">
           </label>
           <label class="item item-input" id="comercios-textarea2">
-            <span class="input-label">Dirección</span><textarea placeholder="Dirección completa del cliente"></textarea></label>
+            <span class="input-label">Dirección</span><textarea placeholder="Dirección completa del cliente" ng-model="vm.restaurant.address"></textarea></label>
           <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
             <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
           </div>
         </form>
-        <a ui-sref="tabsController.comercio" id="comercios-button2" class="button button-positive  button-block">Registrar Comercio</a>
+        <a id="comercios-button2" class="button button-positive  button-block" ng-click="vm.saverestaurant()">Registrar Comercio</a>
       </div>
     </div>
   </ion-content>

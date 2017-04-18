@@ -6,25 +6,22 @@
           <form id="productos-form15" class="list">
             <label class="item item-input" id="productos-input32">
               <span class="input-label">Filtrar</span>
-              <input type="text" placeholder="Nombre">
+              <input type="text" placeholder="Nombre" ng-model="searchText">
             </label>
           </form>
-          <ion-list id="productos-list11">
-            <ion-item class="item-thumbnail-left item-icon-right" id="productos-list-item40" ui-sref="tabsController.producto">
-              <h2>Papas fritas</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="productos-list-item41" ui-sref="tabsController.producto">
-              <h2>Pizza personal</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="productos-list-item42" ui-sref="tabsController.producto">
-              <h2>Pizza grande</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="productos-list-item43" ui-sref="tabsController.producto">
-              <h2>Cinnamon Pie</h2>
-              <i class="icon ion-edit"></i>
+
+          <ion-list>
+            <ion-item class="item-button-right" ng-repeat="product in vm.products | filter:searchText">
+              <ion-item-content ng-click="vm.showDetails(product)">
+                <h2>{{product.name}}</h2>
+                <p>Precio: {{product.price}}</p>
+                <p>Descripcion: {{product.description}}</p>
+              </ion-item-content>
+
+              <button class="button button-positive" ng-click="vm.editProduct(product)">
+                <i class="icon ion-edit"></i>
+              </button>
+
             </ion-item>
           </ion-list>
         </div>
@@ -33,21 +30,21 @@
         <form id="productos-form16" class="list">
           <label class="item item-input" id="productos-input33">
             <span class="input-label">Nombre</span>
-            <input type="text" placeholder="Papas gratis">
+            <input type="text" placeholder="Papas gratis" ng-model="vm.product.name">
           </label>
           <label class="item item-input" id="productos-input35">
             <span class="input-label">Precio</span>
-            <input type="number" placeholder="3000">
+            <input type="number" placeholder="3000" ng-model="vm.product.price">
           </label>
           <label class="item item-input" id="productos-input34">
             <span class="input-label">Descripción</span>
-            <input type="text" placeholder="Sabrosas papas fritas hechas con grasa">
+            <input type="text" ng-model="vm.product.description" placeholder="Sabrosas papas fritas hechas con grasa">
           </label>
           <div style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center;">
             <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
           </div>
         </form>
-        <a ui-sref="tabsController.producto" id="productos-button8" class="button button-positive  button-block">Registrar Producto</a>
+        <a id="productos-button8" class="button button-positive  button-block" ng-click="vm.saveProduct()">Registrar Producto</a>
       </div>
     </div>
   </ion-content>

@@ -1,0 +1,27 @@
+<ion-modal-view>
+  <ion-nav-bar>
+    <ion-nav-buttons side="right" class="has-header">
+      <button class="button button-assertive icon ion-close-circled" ng-click="vm.closeModal()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="has-header padding">
+    <div id="usuario-container13">
+      <h1 id="usuario-heading3" class="text-center">{{bonification.name}}</h1>
+    </div>
+    <div id="usuario-markdown5" class="list card">
+      <a class="item item-icon-left">
+        <i class="icon ion-email"></i>
+        {{bonification.name}}
+      </a>
+      <a class="item item-icon-left">
+        <i class="icon ion-card"></i>
+        {{bonification.type}}
+      </a>
+      <a class="item item-icon-left">
+        <i class="icon ion-ios-telephone"></i>
+        {{bonification.membership}}
+      </a>
+    </div>
+    <button class="button button-assertive button-full" ng-click="vm.deleteBonification(bonification)">Delete</button>
+  </ion-content>
+</ion-modal-view>

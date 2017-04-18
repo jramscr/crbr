@@ -6,25 +6,20 @@
           <form id="bonificaciones-form13" class="list">
             <label class="item item-input" id="bonificaciones-input28">
               <span class="input-label">Filtrar</span>
-              <input type="text" placeholder="Nombre, Categoría, Dirección">
+              <input type="text" placeholder="Nombre, Categoría, Dirección" ng-model="searchText">
             </label>
           </form>
-          <ion-list id="bonificaciones-list10">
-            <ion-item class="item-thumbnail-left item-icon-right" id="bonificaciones-list-item36" ui-sref="bonificacion">
-              <h2>Papas fritas</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="bonificaciones-list-item37" ui-sref="bonificacion">
-              <h2>Pizza personal</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="bonificaciones-list-item38" ui-sref="bonificacion">
-              <h2>Descuento 15%</h2>
-              <i class="icon ion-edit"></i>
-            </ion-item>
-            <ion-item class="item-thumbnail-left item-icon-right" id="bonificaciones-list-item39" ui-sref="bonificacion">
-              <h2>Refresco personal</h2>
-              <i class="icon ion-edit"></i>
+
+          <ion-list>
+            <ion-item class="item-button-right" ng-repeat="bonification in vm.bonifications | filter:searchText">
+              <ion-item-content ng-click="vm.showDetails(bonification)">
+                <h2>{{bonification.name}}</h2>
+              </ion-item-content>
+
+              <button class="button button-positive" ng-click="vm.editBonification(bonification)">
+                <i class="icon ion-edit"></i>
+              </button>
+
             </ion-item>
           </ion-list>
         </div>
@@ -33,18 +28,18 @@
         <form id="bonificaciones-form14" class="list">
           <label class="item item-input" id="bonificaciones-input29">
             <span class="input-label">Nombre</span>
-            <input type="text" placeholder="Papas gratis">
+            <input type="text" placeholder="Papas gratis" ng-model="vm.bonification.name">
           </label>
           <label class="item item-select" id="bonificaciones-select1">
             <span class="input-label">Tipo</span>
-            <select>
+            <select ng-model="vm.bonification.type">
               <option>Producto</option>
               <option>Descuento</option>
             </select>
           </label>
           <label class="item item-select" id="bonificaciones-select2">
             <span class="input-label">Membresía</span>
-            <select>
+            <select ng-model="vm.bonification.membership">
               <option>Bronce</option>
               <option>Plata</option>
               <option>Oro</option>
@@ -52,7 +47,7 @@
             </select>
           </label>
         </form>
-        <a ui-sref="bonificacion" id="bonificaciones-button7" class="button button-positive  button-block">Registrar Bonificación</a>
+        <a id="bonificaciones-button7" class="button button-positive  button-block" ng-click="vm.saveBonification()">Registrar Bonificación</a>
       </div>
     </div>
   </ion-content>
